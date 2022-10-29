@@ -116,13 +116,11 @@ RUN echo "==> Install Terraform..."  && \
 RUN wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
     unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/bin && chmod 755 /usr/bin/packer && rm packer_${PACKER_VERSION}_linux_amd64.zip
 
-
 # Tell us what versions of software we're using.
 RUN python3 --version \
         && aws --version \
         && terraform --version \
         && packer --version
-
 
 # Location where builds occur
 WORKDIR /build

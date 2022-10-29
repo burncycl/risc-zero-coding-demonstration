@@ -1,0 +1,7 @@
+*venv
+*.terraform
+terraform.tfstate.backup
+.terraform.lock.hcl
+*retry
+*.swp
+

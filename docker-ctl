@@ -51,26 +51,26 @@ start() {
     else
         if [[ $RUNTIME == "podman" && $SELINUX == true ]]; then
             $RUNTIME run --env PROJECT_NAME=${CONTAINER_IMAGE} \
-            --volume $(pwd):/build:Z \
-            --volume ~/.aws:/root/.aws:Z \
-            --volume ~/.ssh:/root/.ssh:Z \
-            --volume ~/.gitconfig:/root/.gitconfig:Z \
-            --name ${CONTAINER_NAME} -it ${CONTAINER_IMAGE} bash
+            --volume $(pwd):/home/${USER}/build:Z \
+            --volume ~/.aws:/home/${USER}/.aws:Z \
+            --volume ~/.ssh:/home/${USER}/.ssh:Z \
+            --volume ~/.gitconfig:/home/${USER}/.gitconfig:Z \
+            --name ${CONTAINER_NAME} -it ${CONTAINER_IMAGE} --user ${USER} bash
         elif [ ${OS} == "mac" ]; then
             $RUNTIME run --env PROJECT_NAME=${CONTAINER_IMAGE} \
-            --volume $(pwd):/build \
-            --volume ~/.aws:/root/.aws \
-            --volume ~/.ssh:/root/.ssh \
-            --volume ~/.gitconfig:/root/.gitconfig \
+            --volume $(pwd):/home/${USER}/build \
+            --volume ~/.aws:/home/${USER}/.aws \
+            --volume ~/.ssh:/home/${USER}/.ssh \
+            --volume ~/.gitconfig:/home/${USER}/.gitconfig \
             --platform linux/amd64 \
-            --name ${CONTAINER_NAME} -it ${CONTAINER_IMAGE} bash
+            --name ${CONTAINER_NAME} -it ${CONTAINER_IMAGE} --user ${USER} bash
         else
             $RUNTIME run --env PROJECT_NAME=${CONTAINER_IMAGE} \
-            --volume $(pwd):/build \
-            --volume ~/.aws:/root/.aws \
-            --volume ~/.ssh:/root/.ssh \
-            --volume ~/.gitconfig:/root/.gitconfig \
-            --name ${CONTAINER_NAME} -it ${CONTAINER_IMAGE} bash
+            --volume $(pwd):/home/${USER}/build \
+            --volume ~/.aws:/home/${USER}/.aws \
+            --volume ~/.ssh:/home/${USER}/.ssh \
+            --volume ~/.gitconfig:/home/${USER}/.gitconfig \
+            --name ${CONTAINER_NAME} -it ${CONTAINER_IMAGE} --user ${USER} bash
         fi
     fi
 }
