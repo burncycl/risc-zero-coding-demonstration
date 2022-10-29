@@ -44,6 +44,9 @@ ansible-vault encrypt secrets.yml
 
 Support also exists for GCP Cloud Credentials, although not enabled.
 
+Example
+[secrets.yml.example](./secrets.yml.example)
+
 ### Deploy local dev environemnt with all the bells and whistles
 
 Push button magic with

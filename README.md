@@ -1,5 +1,7 @@
 ## 2022/10 Michael Grate
 
+Coding demonstration for Risc Zero with love <3.
+
 ## Summary of project from Original README.md
 
 Objective:
@@ -21,9 +23,12 @@ Requirements:
 
 ## Best Practices Employed
 
-- Docker is Entrypoint for work. Because it always "works on my machine". But, the next poor dev doesn't have your machine! We'll use Docker to help eliminate this issue.
-- Implemented Terraform Remote State. Because local state is too cheap and easy for a proper systems.
-- Utilized `Makefile` for simplified push button execution. Detects dependencies and fails fast if there is an issue. Superior in bubbling up exit code status for downstream commands and scripts. Adds flexibility in that it can chain dependencies or call single part of a large build. 
+- Proper documentation everywhere. I'm big on Documentation! Back in high-school, Tim got me using Mediawiki for all my documentation. I use Documentation + Automation as a conduit for all my work.
+- Docker local developmeent is entrypoint for automation. Because it always "works on my machine". But, the next poor developer doesn't have your machine! We'll use Docker to help eliminate this issue (this is a newer pattern).
+- Ansible Local Development automation is also avaiable for folks (like me) who don't like running in containers, but rather a native Linux environment. 
+- Implemented Terraform Remote State. Because local state is too cheap and easy for a proper system.
+- Utilized `Makefile` for simplified push button execution. Detects dependencies and fails fast if there is an issue. Superior in bubbling up exit code status for downstream commands and scripts over shell scripts. Adds flexibility in that it can chain dependencies or call single part of a large build. 
+- Implemented roles for all subsequent automation, because hard-code credentials are gross. SSO + Roles FTW! 
 
 ## Getting Started
 
@@ -96,3 +101,9 @@ make remotestate
 ```
 This will Create a remote state bucket. Additionally, it will backup the remote state locally to a tarball for good measure beyond just commiting `terraform.tfstate` to source control. 
 
+## Deploy everything
+```
+make 
+```
+
+## Deploy 
