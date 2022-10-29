@@ -14,11 +14,11 @@ REMOTE_STATE_MODULE := tf-aws-remotes-state-backend-s3
 
 # Handle no targets specified.
 all:
-	$(info make bucket)
+	$(info make remotestate)
 	$(error No target specified.)
 
 
-remotestate: init fmt validate plan apply
+remotestate: init fmt validate plan apply notification
 destroy_remotestate: init validate destroy_noask
 
 
@@ -32,6 +32,7 @@ clean:
 
 # Backup this terraform instance / state, because we do not have a remote state for this piece of automation.
 backup: 
+	$(info [INFO] Creating Backup of this remote state being executed.) 
 	mkdir -p ../../tf-backup
 	cd .. && tar czf ../tf-backup/$(REMOTE_STATE_MODULE).tgz $(REMOTE_STATE_MODULE)/
 
@@ -58,3 +59,6 @@ destroy:
 destroy_noask: # WARNING: Extremely impactful!
 	$(TERRAFORM) destroy -auto-approve
 
+
+notification:
+	$(info [IMPORTANT] Be sure to note the above outputs, as they will be required for all subsequent automation.) 
