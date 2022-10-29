@@ -22,7 +22,8 @@ Requirements:
 ## Best Practices Employed
 
 - Docker is Entrypoint for work. Because it always "works on my machine". But, the next poor dev doesn't have your machine! We'll use Docker to help eliminate this issue.
-- Implemented Terraform Remote State. Because local state is too cheap and easy for proper systems.
+- Implemented Terraform Remote State. Because local state is too cheap and easy for a proper systems.
+- Utilized `Makefile` for simplified push button execution. Detects dependencies and fails fast if there is an issue. Superior in bubbling up exit code status for downstream commands and scripts. Adds flexibility in that it can chain dependencies or call single part of a large build. 
 
 ## Getting Started
 
@@ -44,7 +45,8 @@ docker build -t aws-deploy-ipcted:latest .
 This will produce an image on your local system called `aws-deploy-ipcted:latest` to be used henceforth for local development for this project.
 
 ### Starting Local Development Environment (docker-ctl)
-Note: This script is multi-platform compliant.
+Note: This script is multi-platform compliant. Using this pattern is still fairly new and under heavy development.
+
 
 Instantiate local development
 ```
@@ -68,4 +70,5 @@ Additial options
 - SSH Keys `~/.ssh`
 - Git Configuration `~/.gitconfig`
 
+## Deploy Terraform Remote State (one and done)
 
