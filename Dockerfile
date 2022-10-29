@@ -36,6 +36,7 @@ ENV PYTHON_PACKAGES \
     boto3 \
     pyyaml \
     yamllint \
+    ansible \
     j2cli
 
 ENV TERRAFORM_VERSION="1.3.3"

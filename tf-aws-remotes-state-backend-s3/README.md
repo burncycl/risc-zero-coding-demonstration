@@ -3,7 +3,7 @@
 Reference: 
 - [terraform-aws-remote-state](https://github.com/terra-mod/terraform-aws-remote-state.git)
 
-We're not going to reinvet the wheel here folks. Remote state original code borrowed from the above repo. Modified to use newer Terraform Resources.
+We're not going to reinvent the wheel here folks. Remote state original code borrowed from the above repo. Modified to use newer Terraform Resources.
 
 ## Create Remote State
 

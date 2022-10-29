@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: yes
+  become_method: sudo
+  vars_files:
+   - secrets.yml # Contains private ssh keys and AWS cloud credentials
+  roles:
+   - software-tools
+   - cloud-credentials 
+   - install-awscliv2 

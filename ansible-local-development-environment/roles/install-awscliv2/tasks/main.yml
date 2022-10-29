@@ -1,0 +1,34 @@
+---
+
+- name: Fetch AWS CLI v2 zip file 
+  tags: awscli
+  get_url:
+      url: '{{ awscli_url }}'
+      dest: '{{ tmp_dir }}/{{ awscli_zip_filename }}'
+      mode: 0755
+
+- name: Unarchive AWS CLI v2 
+  tags: awscli
+  unarchive:
+    src: '{{ tmp_dir }}/{{ awscli_zip_filename }}'
+    dest: '{{ tmp_dir }}'
+
+- name: Conditionally check if AWS CLI v2 is installed
+  tags: awscli
+  stat:
+    path: '{{ aws_cli_installation_dir }}'
+  register: awscli_installation
+
+- name: Install AWS CLI 
+  tags: awscli
+  shell: 'cd {{ tmp_dir }}/aws && ./install' 
+  args:
+    executable: /bin/bash
+  when: not awscli_installation.stat.exists
+
+- name: Update AWS CLI 
+  tags: awscli
+  shell: 'cd {{ tmp_dir }}/aws && ./install --update' 
+  args:
+    executable: /bin/bash
+  when: awscli_installation.stat.exists

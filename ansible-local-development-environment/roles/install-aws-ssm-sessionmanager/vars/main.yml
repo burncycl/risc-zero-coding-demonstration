@@ -1,0 +1,8 @@
+---
+
+tmp_dir: /tmp
+usr_bin: /usr/bin
+
+# AWS SSM Session Manager plugin for AWSCLI # Reference: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html
+session_manager_deb: 'session-manager-plugin.deb'
+session_manager_url: 'https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/{{ session_manager_deb }}'

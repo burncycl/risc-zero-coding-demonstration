@@ -44,7 +44,7 @@ docker build -t aws-deploy-ipcted:latest .
 ```
 This will produce an image on your local system called `aws-deploy-ipcted:latest` to be used henceforth for local development for this project.
 
-### Starting Local Development Environment (docker-ctl)
+### Starting Local Development Environment using Docker (docker-ctl)
 Note: This script is multi-platform compliant. Using this pattern is still fairly new and under heavy development.
 
 
@@ -70,5 +70,29 @@ Additial options
 - SSH Keys `~/.ssh`
 - Git Configuration `~/.gitconfig`
 
+### Provisioning pure Local Development Environment (no Docker) using Ansible
+This assumes you want a pure system (non-dockerized). I typically use Ubuntu based Linux systems for development. This is the oldie, but goodie way of managing a base development environment.
+
+What's cool about this automation, is it allows you to store you secrets (e.g. AWS Cloud credentials + ssh keys) in source control. This also version controls your local development environment. No Dockerized overhead.
+
+Prerequisites
+```
+sudo apt-add-repository universe
+sudo apt update
+sudo apt install -y git ansible make
+```
+
+Provision local development with environment. 
+```
+cd ./ansible-local-development-environment && make env
+```
+Additionally, check out [README.md](./ansible-local-development-environment/README.md)
+
 ## Deploy Terraform Remote State (one and done)
+
+Push button magic with
+```
+make remotestate
+```
+This will Create a remote state bucket. Additionally, it will backup the remote state locally to a tarball for good measure beyond just commiting `terraform.tfstate` to source control. 
 

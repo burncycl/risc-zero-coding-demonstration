@@ -1,0 +1,14 @@
+---
+
+- name: Fetch Session Manager package
+  tags: session_manager
+  get_url:
+      url: '{{ session_manager_url }}'
+      dest: '{{ tmp_dir }}/{{ session_manager_deb }}'
+      mode: 0755
+
+- name: Install Session Manager package
+  tags: session_manager
+  apt: 
+    deb: '{{ tmp_dir }}/{{ session_manager_deb }}' 
+    force: yes

@@ -1,0 +1,9 @@
+---
+
+tmp_dir: /tmp
+usr_bin: /usr/bin
+
+# awscliv2 # Reference: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html  
+awscli_zip_filename: 'awscli-exe-linux-x86_64.zip'
+awscli_url: 'https://awscli.amazonaws.com/{{ awscli_zip_filename }}'
+aws_cli_installation_dir: /usr/local/aws-cli
