@@ -1,46 +1,42 @@
-### Objective
+## 2022/10 Michael Grate
+
+## Summary of project from Original README.md
+
+Objective:
 
 Your assignment is to build a terraform configuration that sets up hosting
 for the provided index.html file.
 
-### Brief
+- Implement a terraform configuration to create the required infrastructure on AWS.
+- Use terraform to 'deploy' the index.html ( application ) on the AWS infrastructure.
+- Ensure that the application can only be accessed from: 3.121.56.176
 
-The crew on the Millennium Falcon is bored. To bolster morale, one of your team members has developed a simple game in the form of a single-page application. You have offered to help her with the setup of the infrastructure side of things.
+Requirements:
+- Terraform best practices.
+- Choice of infrastructure
+- Completeness: did you complete the features?
+- Correctness: does the functionality act in sensible, thought-out ways?
+- Maintainability: is it written in a clean, maintainable way?
 
-Your colleague believes that this app will be immensely popular, but has asked that
-before it is publically available that it can only be accessed by her in order
-to ensure that it meets the required standards.
 
-### Tasks
+## Best Practices Employed
 
--   Implement a terraform configuration to create the required infrastructure on AWS.
--   Use terraform to 'deploy' the index.html ( application ) on the AWS infrastructure.
--   Ensure that the application can only be accessed from: 3.121.56.176
+- Docker is Entrypoint for work. Because it always "works on my machine". But, the next poor dev doesn't have your machine! We'll use Docker to help eliminate this issue.
 
-### Deliverables
+## Getting Started
 
-Make sure to include all source code in this repository.
+### Prerequisites
 
-Please provide brief documentation as to why you chose a particular stack/setup.
+Install Docker on your Platform
 
-Ensure that your terraform code can be executed and create the infrastructure
-required and 'deploy' the single-page application.
+- [Install Docker Desktop on Windows](https://docs.docker.com/desktop/install/windows-install/)
+- [Install Docker Desktop on Mac](https://docs.docker.com/desktop/install/mac-install/)
+- [Install Docker Desktop on Linux](https://docs.docker.com/desktop/install/linux-install/)
+- [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
-You may use local state or remote state if you so choose.
+Can Search for your specific Platform and `Docker Install` to get more clear references
 
-### Evaluation Criteria
-
--   Terraform best practices.
--   Choice of infrastructure
--   Completeness: did you complete the features?
--   Correctness: does the functionality act in sensible, thought-out ways?
--   Maintainability: is it written in a clean, maintainable way?
-
-### CodeSubmit
-
-Please organize, design, test, and document your code as if it were
-going into production - then push your changes to the master branch. After you have pushed your code, you may submit the assignment on the assignment page.
-
-All the best and happy coding,
-
-The RISC Zero Team
+Once Docker is installed, to instaitate the Dockerized local development environment use
+```
+docker build -t aws-deploy-ipcted:latest .
+```

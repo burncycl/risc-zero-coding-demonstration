@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+# 2022/10 Michael Grate
+# The trouble with DevOps is that it always "works on my machine". Many engineers are multi-platform. This script + running our local-development in a Docker conatinaer aims to solve this issue.
+
+CONTAINER_IMAGE=${PWD##*/}
+CONTAINER_NAME="${CONTAINER_IMAGE}-container"
+SCRIPT=$0
+
+if which podman >> /dev/null; then
+    echo ">>> Podman detected. Setting as container runtime"
+    RUNTIME=podman
+else
+    echo ">>> Using Docker"
+    RUNTIME=docker
+fi
+
+if [ getenforce == "Enforcing" ]; then
+    echo ">>> SELinux detected"
+    SELINUX=true
+fi
+
+if [ $(uname -s) == "Darwin" ]; then
+    echo ">>> MacOS detected"
+    OS="mac"
+elif [ $(uname -s) == "Linux" ]; then
+    echo ">>> Linux detected"
+    OS="linux"
+fi
+
+help() {
+    echo "${SCRIPT} [build/start/stop/clean]"
+}
+
+build() {
+    if sysctl -a | grep cpu.brand_string | grep -i M1 >> /dev/null; then
+        $RUNTIME build --platform linux/x86_64 -t ${CONTAINER_IMAGE} .
+    else
+        $RUNTIME build -t ${CONTAINER_IMAGE} .
+    fi
+}
+
+clean() {
+    $RUNTIME container rm ${CONTAINER_NAME}
+    $RUNTIME image rm ${CONTAINER_IMAGE}
+}
+
+start() {
+    if $RUNTIME ps -a | grep ${CONTAINER_NAME}; then
+        $RUNTIME start ${CONTAINER_NAME} && \
+        $RUNTIME exec -it ${CONTAINER_NAME} bash
+    else
+        if [[ $RUNTIME == "podman" && $SELINUX == true ]]; then
+            $RUNTIME run --env PROJECT_NAME=${CONTAINER_IMAGE} \
+            --volume $(pwd):/build:Z \
+            --volume ~/.aws:/root/.aws:Z \
+            --volume ~/.ssh:/root/.ssh:Z \
+            --volume ~/.gitconfig:/root/.gitconfig:Z \
+            --name ${CONTAINER_NAME} -it ${CONTAINER_IMAGE} bash
+        elif [ ${OS} == "mac" ]; then
+            $RUNTIME run --env PROJECT_NAME=${CONTAINER_IMAGE} \
+            --volume $(pwd):/build \
+            --volume ~/.aws:/root/.aws \
+            --volume ~/.ssh:/root/.ssh \
+            --volume ~/.gitconfig:/root/.gitconfig \
+            --platform linux/amd64 \
+            --name ${CONTAINER_NAME} -it ${CONTAINER_IMAGE} bash
+        else
+            $RUNTIME run --env PROJECT_NAME=${CONTAINER_IMAGE} \
+            --volume $(pwd):/build \
+            --volume ~/.aws:/root/.aws \
+            --volume ~/.ssh:/root/.ssh \
+            --volume ~/.gitconfig:/root/.gitconfig \
+            --name ${CONTAINER_NAME} -it ${CONTAINER_IMAGE} bash
+        fi
+    fi
+}
+
+stop() {
+    $RUNTIME container stop ${CONTAINER_NAME}
+}
+
+if [[ $1 == "build" ]]; then
+    if ! $RUNTIME image list | grep ${CONTAINER_IMAGE}; then
+        build
+    else
+        echo ">>> Container image already exists."
+        echo ">>> Run '$SCRIPT clean' to delete it."
+    fi
+elif [[ $1 == "clean" ]]; then
+    stop
+    clean
+elif [[ $1 == "start" ]]; then
+    start
+elif [[ $1 == "help" || $1 == "--help" || $1 == "-h" ]]; then
+    help
+fi
+
