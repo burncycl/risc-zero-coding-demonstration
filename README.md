@@ -93,6 +93,13 @@ cd ./ansible-local-development-environment && make env
 ```
 Additionally, check out [README.md](./ansible-local-development-environment/README.md)
 
+## Terraform Docs Markdown
+As new terraform is created, we want to automate aspects of our documentation output. So, we'll use `terraform-docs` and append it to our README.md
+```
+terraform-docs markdown .
+```
+Take the output and put it in the `README.md`.
+
 ## Deploy Terraform Remote State (one and done)
 
 Push button magic with

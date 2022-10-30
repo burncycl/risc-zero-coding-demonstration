@@ -40,6 +40,7 @@ ENV PYTHON_PACKAGES \
     j2cli
 
 ENV TERRAFORM_VERSION="1.3.3"
+ENV TERRAFORM_DOCS_VERSION="v0.16.0"
 ENV PACKER_VERSION="1.8.4"
 
 # General packages
@@ -116,6 +117,11 @@ RUN echo "==> Install Terraform..."  && \
 # Packer Installation # Reference: https://www.packer.io/downloads
 RUN wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
     unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/bin && chmod 755 /usr/bin/packer && rm packer_${PACKER_VERSION}_linux_amd64.zip
+
+# Terraform Docs # Reference: https://terraform-docs.io/user-guide/installation/
+RUN cd /tmp && wget https://terraform-docs.io/dl/${TERRAFORM_DOCS_VERSION}/terraform-docs-${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz && \
+    tar -xzf terraform-docs-${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz && chmod 755 terraform-docs &&  mv terraform-docs /usr/bin/terraform-docs && \
+    rm terraform-docs-${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
 
 # Tell us what versions of software we're using.
 RUN python3 --version \

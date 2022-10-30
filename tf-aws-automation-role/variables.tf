@@ -21,3 +21,15 @@ variable "policy_arn" {
   "arn:aws:iam::aws:policy/IAMFullAccess"]
 }
 
+variable "aws_tags" {
+  default = {
+    environment = "dev"
+    billing     = "cicd"
+    owner       = "devops"
+    product     = "demonstration"
+    managed-by  = "terraform"
+    poc         = "michael grate"
+  }
+}
+
+

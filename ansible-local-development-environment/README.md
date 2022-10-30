@@ -1,6 +1,6 @@
 ### 2022/10 Michael Grate 
 
-Automation to manage my Linux (Ubuntu) Dev Environment.
+Automation to manage my Linux (Ubuntu) Dev Environment. Note: This is Ubuntu centric.
 
 Ubuntu Prerequisites (or as root)
 ```

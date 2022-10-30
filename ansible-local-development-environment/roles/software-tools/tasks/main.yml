@@ -78,6 +78,21 @@
     dest: '{{ usr_bin }}'
     mode: 0755
 
+# Terraform Docs
+- name: Fetch Terraform Docs
+  tags: tools, terraformdocs
+  get_url:
+      url: '{{ terraform_docs_download_url }}/{{ terraform_docs_version }}/terraform-docs-{{ terraform_docs_version }}-{{ arch_tfd }}.tar.gz'
+      dest: '{{ tmp_dir }}'
+
+- name: Install Terraform from archive
+  tags: tools, terraformdocs
+  unarchive:
+    src: '{{ tmp_dir }}/terraform-docs-{{ terraform_docs_version }}-{{ arch_tfd }}.tar.gz'
+    dest: '{{ usr_bin }}'
+    mode: 0755
+
+
 # Packer    
 - name: Fetch Packer
   tags: tools, packer
