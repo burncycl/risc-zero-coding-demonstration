@@ -8,7 +8,7 @@ In an effort to adhear to best-practices, henceforth we'll use a role assumption
 ## Create Role
 Push button magic with
 ```
-make role
+make role WORKSPACE=dev
 ```
 
 All subsequent automation can utilize the following role assumption in the provider block.
@@ -45,12 +45,12 @@ Destroy requires terraform.tfstate
 
 Destroy
 ```
-make destroy
+make destroy WORKSPACE=dev
 ```
 
 Destroy without prompting. Warning: Very impactful!
 ```
-make destroy_role
+make destroy_role WORKSPACE=dev
 ```
 
 ## Requirements

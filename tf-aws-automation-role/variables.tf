@@ -6,6 +6,10 @@ variable "account" {
   default = "default"
 }
 
+variable "environment" {
+  default = "dev"
+}
+
 # Automation Role for EC2, SSM, S3, etc.
 variable "automation_role" {
   default = "automation-role"

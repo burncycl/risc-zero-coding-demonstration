@@ -35,12 +35,13 @@ variable "assume_role_principals" {
 
 variable "tags" {
   default = {
-    environment = "all"
-    billing     = "cicd"
-    owner       = "devops"
-    product     = "demonstration"
-    managed-by  = "terraform"
-    poc         = "michael grate"
+    Environment     = "all"
+    Billing         = "cicd"
+    Owner           = "devops"
+    Product         = "demonstration"
+    ManagedBy       = "terraform"
+    PipelineRepoUrl = "http://risc-zero-drqrtx@git.codesubmit.io/risc-zero/aws-deploy-ipcted"
+    POC             = "michael grate"
   }
 }
 

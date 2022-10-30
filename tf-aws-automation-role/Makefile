@@ -1,4 +1,4 @@
-# 2020/05 Michael Grate
+# 2022/10 Michael Grate
 
 # Verify we have what we need.
 ifeq (, $(shell which terraform))
@@ -7,6 +7,12 @@ else
 export TERRAFORM := $(shell which terraform)
 endif
 
+# Check environment variables are set.
+ifeq ($(origin WORKSPACE), undefined)
+$(error WORKSPACE Variable is Undefined!)
+endif
+
+
 # Handle no targets specified.
 all:
 	$(info make role)
@@ -14,6 +20,7 @@ all:
 
 
 role: init fmt validate plan apply
+role_plan: init workspace fmt validate plan
 destroy_role: init validate destroy_noask
 
 
@@ -25,6 +32,10 @@ clean:
 
 
 # Terraform
+workspace:
+	@echo "Configure terraform workspace to $(WORKSPACE)..."
+	@$(TERRAFORM) workspace select $(WORKSPACE) || terraform workspace new $(WORKSPACE)
+
 init:
 	$(TERRAFORM) init
 

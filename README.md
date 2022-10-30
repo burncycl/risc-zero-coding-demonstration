@@ -24,11 +24,13 @@ Requirements:
 ## Best Practices Employed
 
 - Proper documentation everywhere. I'm big on Documentation! Back in high-school, Tim got me using Mediawiki for all my documentation. I use Documentation + Automation as a conduit for all my work.
-- Docker local developmeent is entrypoint for automation. Because it always "works on my machine". But, the next poor developer doesn't have your machine! We'll use Docker to help eliminate this issue (this is a newer pattern).
+- Docker local development is an entrypoint for the automation. Because it always "works on my machine". But, the next poor developer doesn't have your machine! We'll use Docker to hopefully eliminate this issue (this is a newer pattern - It still has it's issues, which I can discuss).
 - Ansible Local Development automation is also avaiable for folks (like me) who don't like running in containers, but rather a native Linux environment. 
 - Implemented Terraform Remote State. Because local state is too cheap and easy for a proper system.
-- Utilized `Makefile` for simplified push button execution. Detects dependencies and fails fast if there is an issue. Superior in bubbling up exit code status for downstream commands and scripts over shell scripts. Adds flexibility in that it can chain dependencies or call single part of a large build. 
+- Utilized `Makefile` for simplified push button execution. Detects dependencies and fails fast if there is an issue. `Make` is superior to shell scripts for bubbling up exit code statuses `set -e` is not the greatest. Adds flexibility in that it can chain dependencies or call single part of a larger build. 
 - Implemented roles for all subsequent automation, because hard-code credentials are gross. SSO + Roles FTW! 
+- Terraform automation utilizes workspaces to define various environments. For now, we only support dev.
+- Terraform automation utilizes Tagging module. Tagging standards are important so we can easily identify resources in AWS. It's best practice to put these standards in-place early so everything is accounted. This also lends itself to automation later that can utilize tags like "monkey scripts" that shut stuff down based on tags for cost savings.
 
 ## Getting Started
 
@@ -113,4 +115,5 @@ This will Create a remote state bucket. Additionally, it will backup the remote 
 make 
 ```
 
-## Deploy 
+## Deploy Individual Resources (from parent) 
+### Deploy Automation Role
