@@ -1,6 +1,6 @@
 ### 2022/10 Michael Grate
 
-Deploys DevOps Automation IAM role for automation (e.g. Terraform) to assume. 
+Deploys DevOps Automation IAM role for users to assume.
 
 In an effort to adhear to best-practices, henceforth we'll use a role assumption for all subsequent automation.
 
@@ -20,6 +20,9 @@ provider "aws" {
     role_arn                    = var.deploy_role
     session_name                = "Deploy_tf"
   }
+  default_tags {
+    tags = module.required_tags.tags
+  }
 }
 ```
 
@@ -33,7 +36,7 @@ variable "account" {
   default       =       "default"
 }
 
-# Role managed by tf-iam-automation-user-policy 
+# Role managed by tf-aws-automation-role 
 variable "deploy_role" {
   default      =       "arn:aws:iam::351484734788:role/automation-role"
 }

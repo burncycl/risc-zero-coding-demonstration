@@ -10,6 +10,7 @@ endif
 # Declare variables, not war.
 REMOTE_STATE_DIR := ./tf-aws-remotes-state-backend-s3
 LOCAL_DEV_ENV_DIR := ./ansible-local-development-environment
+AUTOMATION_ROLE_DIR := 
 
 # Provision Local Development Environment
 	cd $(LOCAL_DEV_ENV_DIR) && $(MAKE)  
@@ -20,4 +21,6 @@ remotestate:
 	cd $(REMOTE_STATE_DIR) && $(MAKE) remotestate
 	cd $(REMOTE_STATE_DIR) && $(MAKE) backup
 
+
+automation_role:
 
