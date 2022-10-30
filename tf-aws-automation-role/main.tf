@@ -7,7 +7,7 @@ provider "aws" {
 }
 
 module "required_tags" {
-  source            = "../terraform-modules/terraform-modules-aws-tags/"
+  source            = "../terraform-modules/terraform-module-aws-tags/"
   billing           = "cicd"
   environment       = var.environment
   managed_by        = "terraform"
