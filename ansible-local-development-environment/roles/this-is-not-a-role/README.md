@@ -9,5 +9,5 @@ DJ Mare
 ![The DJ](img/002.jpg?raw=true "DJmare")
 
 Leda & Judy helping me write code.
-![life."](img/003.jpg?raw=true "Leda & Judy and the battlestation")
+![Cat life](img/003.jpg?raw=true "Leda & Judy and the battlestation")
 

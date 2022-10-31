@@ -1,6 +1,6 @@
 ### 2022/10 Michael Grate
 
-Deploys DevOps Automation IAM role for users to assume.
+Creates DevOps Automation IAM role for users to assume.
 
 In an effort to adhear to best-practices, henceforth we'll use a role assumption for all subsequent automation.
 
