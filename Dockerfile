@@ -14,6 +14,7 @@ ENV BUILD_PACKAGES \
   libc-dev \
   musl-dev \
   openssl-dev \
+  python3 \
   python3-dev \
   rsync \
   curl \
@@ -28,6 +29,7 @@ ENV BUILD_PACKAGES \
   py-yaml \
   jq \
   ca-certificates \
+  py3-virtualenv \
   zip
 
 
@@ -36,6 +38,7 @@ ENV PYTHON_PACKAGES \
     boto3 \
     pyyaml \
     yamllint \
+    virtualenv \
     ansible \
     j2cli
 
