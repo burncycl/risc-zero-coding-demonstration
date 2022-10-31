@@ -38,6 +38,7 @@ Requirements:
 - Implemented roles for all subsequent automation, because hard-code credentials are gross. SSO + Roles FTW! 
 - Terraform automation utilizes workspaces to define various environments. For now, we only support `dev`.
 - Terraform automation utilizes Tagging module. Tagging standards are important so we can easily identify resources in AWS. It's best practice to put these standards in-place early so everything is accounted. This also lends itself to automation later that can utilize tags like "monkey scripts" that shut stuff down based on tags for cost savings.
+- Tests. We test our code, and we help support testing.
 
 ## Getting Started
 You have two options, for your development environment
