@@ -179,6 +179,7 @@ make cf WORKSPACE=dev
 ```
 
 ## Test Site Code
+Push button magic with
 ```
 make test WORKSPACE=dev
 ```
