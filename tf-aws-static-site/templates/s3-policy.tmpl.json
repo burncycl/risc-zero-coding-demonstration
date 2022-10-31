@@ -1,0 +1,35 @@
+{
+  "Id": "SourceIP",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SourceIP",
+      "Action": "s3:*",
+      "Effect": "Deny",
+      "Resource": [
+        "arn:aws:s3:::${bucket_name}",
+        "arn:aws:s3:::${bucket_name}/*"
+      ],
+      "Condition": {
+        "NotIpAddress": {
+          "aws:SourceIp": [
+            "75.166.43.168/32",
+            "3.121.56.176/32"
+          ]
+        }
+      },
+      "Principal": "*"
+    },
+    {
+        "Sid": "PublicReadGetObject",
+        "Effect": "Allow",
+        "Principal": "*",
+        "Action": [
+            "s3:GetObject"
+        ],
+        "Resource": [
+            "arn:aws:s3:::${bucket_name}/*"
+        ]
+    }
+  ]
+}
