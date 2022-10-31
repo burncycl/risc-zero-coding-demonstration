@@ -1,5 +1,7 @@
 ## 2022/10 Michael Grate
 
+Creates Static public site on S3.
+
 ## Create Site
 Push button magic with
 ```
