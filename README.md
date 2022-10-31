@@ -175,3 +175,7 @@ Push button magic with
 make cf WORKSPACE=dev
 ```
 
+## Test Code
+```
+make test WORKSPACE=dev
+```

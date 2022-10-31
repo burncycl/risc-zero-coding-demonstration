@@ -20,7 +20,7 @@ AUTOMATION_ROLE_DIR := ./tf-aws-automation-role
 STATIC_SITE_DIR := ./tf-aws-static-site
 R53_HOSTED_ZONE_DIR := ./tf-aws-r53-hosted-zone
 CLOUDFRONT_SITE_DIR := ./tf-aws-cloudfront-site
-
+TEST_DIR := ./py-test
 
 phase1: remotestate site 
 phase2: hostedzone cf
@@ -46,3 +46,7 @@ hostedzone:
 
 cf:
 	cd $(CLOUDFRONT_SITE_DIR) && $(MAKE) cf
+
+tests: test
+test:
+	cd $(TEST_DIR) && $(MAKE) test
